@@ -9,14 +9,22 @@ public class CartMover : MonoBehaviour
     [SerializeField] Rigidbody _rb;
 
     float hImput;
+    Vector3 distance = new Vector3(3f, 0, 0);
 
     private void Update()
     {
-        hImput = Input.GetAxis("Horizontal");
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            transform.position = transform.position + distance;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            transform.position = transform.position - distance;
+        }
     }
     private void FixedUpdate()
     {
         _rb.AddForce(Vector3.forward * _movePower,ForceMode.Impulse);
-        _rb.AddForce(Vector3.right * _horizontalStraight * hImput, ForceMode.Impulse);
+        //_rb.AddForce(Vector3.right * _horizontalStraight * hImput, ForceMode.Impulse);
     }
 }
